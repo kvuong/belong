@@ -1,10 +1,10 @@
-package au.com.belong.code_challenge;
+package au.com.belong.phonedirectory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CodeChallengeApplicationTests {
+class PhoneDirectoryApplicationTests {
 
 	@Test
 	void contextLoads() {

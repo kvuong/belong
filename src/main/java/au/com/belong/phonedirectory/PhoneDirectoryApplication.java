@@ -1,13 +1,13 @@
-package au.com.belong.code_challenge;
+package au.com.belong.phonedirectory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CodeChallengeApplication {
+public class PhoneDirectoryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CodeChallengeApplication.class, args);
+		SpringApplication.run(PhoneDirectoryApplication.class, args);
 	}
 
 }
