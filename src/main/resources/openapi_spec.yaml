@@ -1,0 +1,112 @@
+swagger: "2.0"
+info:
+  description: "Belong phone directory."
+  version: "1.0.0"
+  title: "Belong phone directory API"
+host: "localhost:8081"
+basePath: "/v1"
+tags:
+  - name: "phone_numbers"
+    description: "Customer phone numbers."
+  - name: "customers"
+    description: "Customers of Belong."
+schemes:
+  - "http"
+paths:
+  /customers/{customer_id}:
+    get:
+      tags:
+        - "customers"
+      summary: "Get customer phone numbers."
+      description: "Returns list of phone numbers belonging to a customer."
+      operationId: "getCustomerPhoneNumbers"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "customer_id"
+          in: "path"
+          description: "ID of customer."
+          required: true
+          type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CustomerArray"
+  /phone_numbers:
+    get:
+      tags:
+        - "phone_numbers"
+      summary: "Get all phone numbers."
+      description: "Returns list of phone numbers."
+      operationId: "getAllPhoneNumbers"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PhoneNumbersArray"
+  /phone_numbers/{phone_id}/activate:
+    post:
+      tags:
+        - "phone_numbers"
+      summary: "Activate phone number."
+      description: "Update phone status to 'active'."
+      operationId: "postActiviatePhoneNumber"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "phone_id"
+          in: "path"
+          description: "ID of phone number to be updated."
+          required: true
+          type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+definitions:
+  PhoneNumbersArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/PhoneNumber"
+  PhoneNumber:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "Phone number id."
+        example: 1001
+      number:
+        type: "string"
+        description: "Phone number"
+        example: "0411222333"
+      status:
+        type: "string"
+        description: "Status of phone number."
+        enum:
+          - "active"
+          - "inactive"
+  CustomerArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Customer"
+  Customer:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "Customer id."
+        example: 1001
+      first_name:
+        type: "string"
+        description: "Customer first name."
+        example: "John"
+      last_name:
+        type: "string"
+        description: "Customer last name."
+        example: "Doe"
+      phone_numbers:
+        type: "array"
+        items:
+          $ref: "#/definitions/PhoneNumber"
