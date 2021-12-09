@@ -41,7 +41,7 @@ public class PhoneDirectoryServiceImplTests {
         Customer expectedCustomer = new Customer(CUSTOMERID, "John", "Doe", null);
 
         // When
-        when(customerRepository.getById(CUSTOMERID)).thenReturn(expectedCustomer);
+        when(customerRepository.findById(CUSTOMERID)).thenReturn(Optional.of(expectedCustomer));
         Customer actualCustomer = phoneDirectoryService.getCustomer(CUSTOMERID);
 
         // Then
