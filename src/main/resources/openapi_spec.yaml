@@ -33,6 +33,10 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/CustomerArray"
+        "404":
+          description: "resource not found"
+          schema:
+            $ref: "#/definitions/ExceptionResponse"
   /phone_numbers:
     get:
       tags:
@@ -47,7 +51,11 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/PhoneNumbersArray"
-  /phone_numbers/{phone_id}/activate:
+        "404":
+          description: "resource not found"
+          schema:
+            $ref: "#/definitions/ExceptionResponse"
+  /phone_numbers/{phone_number_id}/activate:
     post:
       tags:
         - "phone_numbers"
@@ -57,7 +65,7 @@ paths:
       produces:
         - "application/json"
       parameters:
-        - name: "phone_id"
+        - name: "phone_number_id"
           in: "path"
           description: "ID of phone number to be updated."
           required: true
@@ -65,6 +73,10 @@ paths:
       responses:
         "200":
           description: "successful operation"
+        "404":
+          description: "resource not found"
+          schema:
+            $ref: "#/definitions/ExceptionResponse"
 definitions:
   PhoneNumbersArray:
     type: "array"
@@ -110,3 +122,22 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/PhoneNumber"
+  ExceptionResponse:
+    type: "object"
+    properties:
+      timestamp:
+        type: "string"
+        description: "Timestamp of occurrence."
+        example: "2021-12-09T04:30:00.003+00:00"
+      message:
+        type: "string"
+        description: "Error message."
+        example: "Error message."
+      details:
+        type: "string"
+        description: "Additional information of the error."
+        example: "uri=/v1/path"
+      status:
+        type: "string"
+        description: "Response status."
+        example: "NOT_FOUND"
