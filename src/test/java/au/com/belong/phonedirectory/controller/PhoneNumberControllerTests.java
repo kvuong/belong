@@ -49,6 +49,4 @@ public class PhoneNumberControllerTests {
         String expectedResponse = objectMapper.writeValueAsString(phoneNumbers);
         assertEquals(expectedResponse, actualResponseBody);
     }
-
-
 }
