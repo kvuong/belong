@@ -28,6 +28,10 @@ public class CustomerController {
         return ResponseEntity.ok(phoneDirectoryService.getCustomer(customer_id));
     }
 
+    /**
+     * Get all customers.
+     * @return List of customers.
+     */
     @GetMapping(value = "/customers", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getAllCustomers() {
         return ResponseEntity.ok(phoneDirectoryService.getAllCustomers());
