@@ -18,11 +18,6 @@ public class CustomerController {
         this.phoneDirectoryService = phoneDirectoryService;
     }
 
-    /**
-     * Get customer based upon Id
-     * @param customer_id customer id
-     * @return customer.
-     */
     @GetMapping(value = "/customers/{customer_id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getCustomerPhoneNumbers(final @PathVariable long customer_id) {
         return ResponseEntity.ok(phoneDirectoryService.getCustomer(customer_id));
